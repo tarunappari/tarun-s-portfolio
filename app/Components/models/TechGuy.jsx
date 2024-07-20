@@ -1,18 +1,17 @@
 import React, { useEffect, useRef } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 
-export default function TechGuy(props) {
+export default function TechGuy({ scale = [1, 1, 1], ...props }) {
   const group = useRef()
   const { nodes, materials, animations } = useGLTF('/Techguy.glb')
-  const { actions } = useAnimations(animations, group)
-  console.log(actions);
+  const { actions } = useAnimations(animations, group);
 
   useEffect(()=>{
     actions['Computer Typing'].reset().fadeIn(0.5).play();
   })
 
   return (
-    <group ref={group} {...props} dispose={null} scale={[1.3,1.3,1.3]} >
+    <group ref={group} {...props} dispose={null} scale={scale} >
       <group name="Sketchfab_Scene">
         <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]} scale={1.977}>
           <group name="SKM_TechGuyfbx" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>

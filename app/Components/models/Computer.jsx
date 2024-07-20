@@ -9,10 +9,10 @@ Title: Sci - fi computer game ready
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 
-export default function Computer(props) {
+export default function Computer({ scale = [1, 1, 1], ...props }) {
   const { nodes, materials } = useGLTF('/sci_-_fi_computer_game_ready.glb')
   return (
-    <group {...props} dispose={null} rotation={[0, -180 * Math.PI / 180, 0]}>
+    <group {...props} dispose={null} rotation={[0, -180 * Math.PI / 180, 0]} scale={scale}>
       <group scale={0.0045}>
         <group position={[0, 28.869, 312.193]} rotation={[-1.469, 0, 0]} scale={100}>
           <mesh
@@ -42,7 +42,7 @@ export default function Computer(props) {
             material={materials.digital_display_sides}
           />
         </group>
-        <group position={[0, 0, -94.762]} rotation={[0, Math.PI / 2, 0]} scale={123.801}>
+        <group position={[0, 0, -94.762]} rotation={[0, Math.PI / 2, 0]} scale={124}>
           <mesh
             castShadow
             receiveShadow

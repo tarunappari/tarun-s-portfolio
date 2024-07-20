@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Navbar } from "./Components/Mainsections/Navbar/Navbar";
 import About from "./Components/Mainsections/About/About";
 import Hero from "./Components/Mainsections/Hero/Hero";
-import { navItems } from "./Data";
+import { navItems } from "./data";
 
 
 

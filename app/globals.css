@@ -31,3 +31,14 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.pc-workstation{
+  z-index: 9 !important;
+  top: 0rem !important;
+  left: 0 !important;
+}
+
+.butterfly{
+  top: 1rem;
+  left: -19rem !important;
+}

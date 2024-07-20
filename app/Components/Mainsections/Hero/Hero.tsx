@@ -3,7 +3,7 @@
 import React, { Suspense, useEffect, useState } from "react";
 import styled from "styled-components";
 import { BackgroundBeams } from "../../ui/BackgroundBeams";
-import scroll from "../../../Assests/scroll.png";
+import scroll from "../../../../public/scroll.png";
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 import { TextGenerateEffect } from "../../ui/TextGenerator";
@@ -67,8 +67,8 @@ const Hero: React.FC = () => {
             if (window.innerWidth < 650) {
                 TechguySetScale(() => window.innerWidth < 650 ? 1.6 : 1);
                 computerSetScale(() => window.innerWidth < 650 ? 1.4 : 0.8);
-                TechguySetPosition(() => window.innerWidth < 650 ? [0, -2, -1.2] : [0, -1.6, -0.9]);
-                computerSetPosition(() => window.innerWidth < 650 ? [0, -0.5, 1.2] : [0, -0.5, 0.9])
+                TechguySetPosition(() => window.innerWidth < 650 ? [0, -1.9, -1.8] : [0, -1.6, -0.9]);
+                computerSetPosition(() => window.innerWidth < 650 ? [0, -0.1, 1.5] : [0, -0.5, 0.9])
             }
         };
 

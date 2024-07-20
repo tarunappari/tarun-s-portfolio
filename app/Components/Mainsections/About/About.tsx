@@ -1,14 +1,12 @@
-
 "use client";
-import React from 'react'
 import './About.css';
 import { BentoGrid, BentoGridItem } from '../../ui/BentoGrid';
-import { gridItems } from '@/app/Data';
+import { gridItems } from '@/app/data';
 
-const About : React.FC = () => {
+const About = () => {
   return (
-    <div id='about' className='about-container'>
-        <BentoGrid>
+    <section id='about' className='about-container'>
+        <BentoGrid className='bento-grid'>
           {
             gridItems.map((item)=>(
               <BentoGridItem 
@@ -18,11 +16,14 @@ const About : React.FC = () => {
                   description={item.description}
                   className={item.className}
                   img={item.img}
+                  imgClassName={item.imgClassName}
+                  titleClassName={item.titleClassName}
+                  spareImg={item.spareImg}
               />
             ))
           }
         </BentoGrid>
-    </div>
+    </section>
   )
 }
 

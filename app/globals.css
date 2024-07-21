@@ -39,6 +39,20 @@ body {
 }
 
 .butterfly{
-  top: 1rem;
-  left: -19rem !important;
+  top: 13rem !important;
+  left: -16rem !important;
+}
+
+@media only screen and (max-width:780px){
+  .butterfly{
+    top: 6rem !important;
+    left: 0rem !important;
+  }
+}
+
+@media only screen and (max-width:650px){
+  .butterfly{
+    top: 6rem !important;
+    left: 6rem !important;
+  }
 }

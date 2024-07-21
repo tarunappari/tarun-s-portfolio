@@ -16,6 +16,9 @@ import { Canvas } from "react-three-fiber";
 import { Environment, OrbitControls } from "@react-three/drei";
 import PcWorkStation from '../models/PcWorkStation';
 import Butterfly from '../models/Butterfly'
+import ComputerMail from '../../data/compurt-mail.json'
+import MailRocket from '../../data/mail-rocket.json'
+
 
 export const BentoGrid = ({
     className,
@@ -71,12 +74,23 @@ export const BentoGridItem = ({
         },
     };
 
+    const mailAnimation = {
+        loop: true,
+        autoplay: true,
+        animationData: ComputerMail,
+    };
+
+    const mailRocket = {
+        loop: true,
+        autoplay: true,
+        animationData: MailRocket,
+    };
+
     const handleCopy = () => {
         const text = "tarunappari23@gmail.com";
         navigator.clipboard.writeText(text);
         setCopied(true);
     };
-
     return (
         <div
             className={cn(
@@ -90,13 +104,13 @@ export const BentoGridItem = ({
                 // background: "rgb(6, 7, 14)",
                 // backgroundColor:
                 //     "linear-gradient(117deg, rgba(0,0,0,1) 1%, rgba(12,44,163,1) 74%)",
-                background: "rgb(1, 3, 11)",
+                background: "rgb(1, 4, 15)",
                 backgroundColor:
-                    "linear-gradient(90deg, rgba(4,7,29,1) 0%, #080913 100%)",
+                    "linear-gradient(90deg, #050929 0%, #060a37 100%)",
             }}
         >
             {/* add img divs */}
-            <div className={`${id === 6 && "flex justify-center"} h-full`}>
+            <div className={`${id === 6 && "flex"} h-full`}>
                 <div className="w-full h-full absolute">
                     {img && id !== 1 && (
                         <img
@@ -121,18 +135,14 @@ export const BentoGridItem = ({
                 </div>
                 {id === 6 && (
                     // add background animation , remove the p tag
-                    <BackgroundGradientAnimation>
-                        <div className="absolute z-50 inset-0 flex items-center justify-center text-white font-bold px-4 pointer-events-none text-3xl text-center md:text-4xl lg:text-7xl">
-                        </div>
-                    </BackgroundGradientAnimation>
-
+                    <BackgroundGradientAnimation />
 
                 )}
 
                 <div
                     className={cn(
                         titleClassName,
-                        "group-hover/bento:translate-x-2 transition duration-200 relative md:h-full min-h-40 flex flex-col px-5 p-5 lg:p-10"
+                        `group-hover/bento:translate-x-2 ${id === 6 && "email-gradient"} transition duration-200 relative md:h-full min-h-40 flex flex-col px-5 p-5 lg:p-10`
                     )}
                 >
                     {/* change the order of the title and des, font-extralight, remove text-xs text-neutral-600 dark:text-neutral-300 , change the text-color */}
@@ -144,10 +154,34 @@ export const BentoGridItem = ({
                     {/* add text-3xl max-w-96 , remove text-neutral-600 dark:text-neutral-300*/}
                     {/* remove mb-2 mt-2 */}
                     <div
-                        className={`font-sans text-[#d5d5d5] text-lg lg:text-3xl max-w-96 font-bold z-10`}
+                        className={`${id === 6 && 'email-title'}font-sans text-[#d5d5d5] text-lg lg:text-3xl max-w-96 font-bold z-10`}
                     >
                         {title}
                     </div>
+
+                    {id === 6 && (
+                        <div className="mt-5 relative">
+                            {/* button border magic from tailwind css buttons  */}
+                            {/* add rounded-md h-8 md:h-8, remove rounded-full */}
+                            {/* remove focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 */}
+                            {/* add handleCopy() for the copy the text */}
+                            <div
+                                className={`absolute -bottom-5 right-0 ${copied ? "block" : "block"
+                                    }`}
+                            >
+                                {/* <img src="/confetti.gif" alt="confetti" /> */}
+                                <Lottie options={defaultOptions} height={200} width={400} />
+                            </div>
+
+                            <MagicButton
+                                title={copied ? "Email is Copied!" : "Copy my email address"}
+                                icon={<IoCopyOutline />}
+                                position="left"
+                                handleClick={handleCopy}
+                                otherClasses="!bg-[#161A31]"
+                            />
+                        </div>
+                    )}
 
                     {/* for the github 3d globe */}
                     {id === 2 && <GridGlobe />}
@@ -158,7 +192,7 @@ export const BentoGridItem = ({
                                 <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-#d5d5d5 z-40" />
                                 <div className="absolute w-full h-72 md:h-full z-10">
                                     <Canvas>
-                                        <ambientLight intensity={-1} />
+                                        <ambientLight intensity={-2} />
                                         <OrbitControls enableZoom={false} />
                                         <Suspense fallback={null}>
                                             <PcWorkStation />
@@ -169,7 +203,7 @@ export const BentoGridItem = ({
                             </div>
                         </div>}
 
-                        {id === 5 &&
+                    {id === 5 &&
                         <div className="flex object-cover object-center butterfly items-center justify-center absolute md:top-40 w-full h-full">
                             <div className="max-w-7xl mx-auto w-full relative overflow-hidden h-96 px-4">
                                 <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-#d5d5d5 z-40" />
@@ -218,30 +252,21 @@ export const BentoGridItem = ({
                             </div>
                         </div>
                     )}
-                    {id === 6 && (
-                        <div className="mt-5 relative">
-                            {/* button border magic from tailwind css buttons  */}
-                            {/* add rounded-md h-8 md:h-8, remove rounded-full */}
-                            {/* remove focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 */}
-                            {/* add handleCopy() for the copy the text */}
-                            <div
-                                className={`absolute -bottom-5 right-0 ${copied ? "block" : "block"
-                                    }`}
-                            >
-                                {/* <img src="/confetti.gif" alt="confetti" /> */}
-                                <Lottie options={defaultOptions} height={200} width={400} />
-                            </div>
 
-                            <MagicButton
-                                title={copied ? "Email is Copied!" : "Copy my email address"}
-                                icon={<IoCopyOutline />}
-                                position="left"
-                                handleClick={handleCopy}
-                                otherClasses="!bg-[#161A31]"
-                            />
-                        </div>
-                    )}
+
                 </div>
+                {
+                    id === 6 && (
+                        <div className="email-icon">
+                            <div className="mail-container">
+                                <div className="mail-rocket">
+                                    <Lottie options={mailRocket} height={115} width={250} />
+                                </div>
+                                <Lottie options={mailAnimation} height={200} width={400} />
+                            </div>
+                        </div>
+                    )
+                }
             </div>
         </div>
     );

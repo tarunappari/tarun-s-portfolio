@@ -32,6 +32,11 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+html{
+  scroll-snap-type: y mandatory;
+  scroll-behavior : smooth;
+}
+
 .pc-workstation{
   z-index: 9 !important;
   top: 0rem !important;
@@ -55,4 +60,85 @@ body {
     top: 6rem !important;
     left: 6rem !important;
   }
+}
+
+.email-gradient{
+  z-index: 3 !important;
+  min-width: 80% !important;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+}
+
+.email-icon{
+  z-index: 3 !important;
+  position: relative !important;
+  right: 0rem !important;
+  top: -4rem;
+}
+
+.mail-container{
+  z-index: 4 !important;
+  max-height: 200px !important;
+  position: relative;
+  left: -11rem;
+  .mail-rocket{
+    z-index: 5 !important;
+    position: relative;
+    top: 8.7rem;
+  }
+}
+
+@media only screen and (max-width:780px){
+
+  .email-gradient{
+    z-index: 3 !important;
+    min-width: 60% !important;
+  }
+
+  .email-icon{
+  top: -7rem;
+  }
+
+  .mail-container{
+    z-index: 4 !important;
+    min-height: 100%;
+    position: relative;
+    left: -6rem;
+  }
+  
+}
+
+@media only screen and (max-width:520px){
+
+  .email-icon{
+  top: -7rem;
+  left: -2rem !important;
+  }
+
+  .magic-button-text{
+    font-size: 0.8rem !important;
+  }
+  
+}
+
+@media only screen and (max-width:460px){
+
+  .magic-button-text{
+    font-size: 0.65rem !important;
+  }
+
+  .email-title{
+    font-size: 0.8rem !important;
+  }
+  
+}
+
+@media only screen and (max-width:345px){
+
+  .magic-button-text{
+    font-size: 0.5rem !important;
+    font-weight: 500;
+  }
+  
 }

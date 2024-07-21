@@ -1,11 +1,12 @@
 "use client";
-import './About.css';
+
 import { BentoGrid, BentoGridItem } from '../../ui/BentoGrid';
 import { gridItems } from '@/app/data';
+import styled from 'styled-components';
 
 const About = () => {
   return (
-    <section id='about' className='about-container'>
+    <AboutContainer id='about' className='about-container'>
         <BentoGrid className='bento-grid'>
           {
             gridItems.map((item)=>(
@@ -23,8 +24,12 @@ const About = () => {
             ))
           }
         </BentoGrid>
-    </section>
+    </AboutContainer>
   )
 }
 
 export default About;
+
+let AboutContainer = styled.section`
+ padding: 1rem;
+`

@@ -1,27 +1,169 @@
-
-
-import React from 'react'
-import './Projects.css'
+// src/components/Projects.tsx
+import React from 'react';
+import { projects } from '../../../data';
+import { CardContainer, CardBody, CardItem } from '../../ui/3d-card'; // Adjust the import path as needed
+import Image from 'next/image';
 import styled from 'styled-components';
+import { motion } from "framer-motion";
+import * as THREE from 'three';
+import useVanta from '../../ui/useVanta';
 
 const Projects = () => {
+
+  const vantaRef = useVanta();
+
   return (
-    <ProjectContainer id='projects'>
-        <h1>
-            projects
-        </h1>
-        <span>hello guys hi</span>
-    </ProjectContainer>
-  )
-}
+    <ProjectsMainContainer ref={vantaRef} className="main-container">
+      <div className='featured-container'>
+        <motion.h1
+        initial={{ opacity: 0, x: -100 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1 }}>
+           Featured <span className='span-gradient'>Works</span>
+        </motion.h1>
+      </div>
+      <ProjectContainer className="projects-container">
+        {projects.map((project) => (
+          <CardContainer key={project.id} className="card-container">
+            <CardBody className="card-body">
+              <CardItem className="card-item" translateZ={50}>
+                <h2>{project.title}</h2>
+                <p>{project.des}</p>
+              </CardItem>
+              <CardItem className="card-item" translateZ={70}>
+                <Image src={project.img} className='project-img' alt={project.title} width={450} height={450} />
+              </CardItem>
+              <CardItem className="card-item icons-btn-div" translateZ={40}>
+                <div className="icon-list">
+                  {project.iconLists.map((icon, index) => (
+                    <Image key={index} src={icon} alt={`icon-${index}`} width={20} height={20} />
+                  ))}
+                </div>
+                <div className="live-button">
+                  <button className="px-7 py-1.5 rounded-full relative bg-slate-700 text-white text-sm hover:shadow-2xl hover:shadow-white/[0.1] transition duration-200 border border-slate-600">
+                    <div className="absolute inset-x-0 h-px w-1/2 mx-auto -top-px shadow-2xl  bg-gradient-to-r from-transparent via-teal-500 to-transparent" />
+                    <span className="relative z-20"><a href={project.link} className='btn' target="_blank" rel="noopener noreferrer">Live Site</a></span>
+                  </button>
+                </div>
+              </CardItem>
+            </CardBody>
+          </CardContainer>
+        ))}
+      </ProjectContainer>
+    </ProjectsMainContainer>
+  );
+};
 
 export default Projects;
 
+let ProjectsMainContainer = styled.div`
+     .featured-container{
+      min-width: 100%;
+      text-align: center;
+      margin-top: 5rem;
+      margin-bottom: -2rem;
+      h1{
+        font-size: 3rem;
+        font-weight: 800;
+      }
+    }
+
+    @media only screen and (max-width:780px){
+      .featured-container{
+        h1{
+        font-size: 2rem;
+      }
+      }
+    }
+
+    @media only screen and (max-width:480px){
+      .featured-container{
+        h1{
+        font-size: 1.5rem;
+      }
+      }
+    }
+`
+
 let ProjectContainer = styled.div`
-  min-height: 100vh;
-  border: 1px solid red;
-  h1{
-    color: red;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    .card-container{
+      border: 0.05rem solid grey;
+      border-radius: 1rem;
+      box-shadow: 2px 2px 5px #3d3d3d;
+      padding: 1rem;
+            background: linear-gradient(
+                90deg,
+                #000002 10%,
+                #06091b 70%,
+                #000002 100%
+            );
+
+            background-size: 400% 400%;
+            animation: gradient 8s ease infinite;
+            min-width: 32vw;
+      .card-body{
+        display: flex ;
+      flex-direction: column ;
+      justify-content: space-between;
+      }
+
+      .card-item{
+        h2{
+          font-size: 1.3rem;
+          font-weight: 600;
+          padding-bottom: 0.5rem;
+        }
+        p{
+          font-size: 0.8rem;
+          font-weight: 400;
+          color: #7a7a7a;
+        }
+        .project-img{
+          border-radius: 1rem;
+          margin-top: -1rem;
+        }
+      }
+      
+      .icons-btn-div{
+        display: flex;
+        justify-content: space-between;
+        min-width: 100%;
+        .icon-list{
+        display: flex;
+        flex-direction: row;
+        gap: 0.3rem;
+      }
+
+      .btn{
+        font-size: 0.8rem;
+      }
+      }
   }
-  
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @media only screen and (max-width:790px){
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  @media only screen and (max-width:490px){
+    .card-container{
+      margin: 0 1rem;
+    }
+  }
+
 `

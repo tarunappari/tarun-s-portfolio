@@ -6,9 +6,11 @@ import Hero from "./Components/Mainsections/Hero/Hero";
 import { navItems } from "./data";
 import Projects from "./Components/Mainsections/Projects/Projects";
 import { GlobalStyles } from './GlobalStyles'
-
+import Testing from './Components/Mainsections/Testing'
+import Experience from "./Components/Mainsections/Experience/Experience";
 
 export default function Home() {
+
   return (
     <main>
       <GlobalStyles />
@@ -17,6 +19,7 @@ export default function Home() {
         <Hero />
         <About />
         <Projects />
+        <Experience />
       </div>
     </main>
   );

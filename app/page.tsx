@@ -6,8 +6,8 @@ import Hero from "./Components/Mainsections/Hero/Hero";
 import { navItems } from "./data";
 import Projects from "./Components/Mainsections/Projects/Projects";
 import { GlobalStyles } from './GlobalStyles'
-import Testing from './Components/Mainsections/Testing'
 import Experience from "./Components/Mainsections/Experience/Experience";
+import Contact from "./Components/Mainsections/Contact/Contact";
 
 export default function Home() {
 
@@ -20,6 +20,7 @@ export default function Home() {
         <About />
         <Projects />
         <Experience />
+        <Contact />
       </div>
     </main>
   );

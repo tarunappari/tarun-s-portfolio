@@ -6,14 +6,13 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import { motion } from "framer-motion";
 import * as THREE from 'three';
-import useVanta from '../../ui/useVanta';
+import { Button } from "../../ui/MovingBorder";
 
 const Projects = () => {
 
-  const vantaRef = useVanta();
 
   return (
-    <ProjectsMainContainer ref={vantaRef} className="main-container">
+    <ProjectsMainContainer className="main-container">
       <div className='featured-container'>
         <motion.h1
         initial={{ opacity: 0, x: -100 }}

@@ -118,3 +118,50 @@ export const navItems = [
       img: "/link.svg",
     },
   ];
+
+  const technologies = [
+    {
+      name: "HTML 5",
+      icon: "/TechIcons/html.png",
+    },
+    {
+      name: "CSS 3",
+      icon: "/TechIcons/css.png",
+    },
+    {
+      name: "JavaScript",
+      icon: "/TechIcons/javascript.png",
+    },
+    {
+      name: "TypeScript",
+      icon: "/TechIcons/typeScript.png",
+    },
+    {
+      name: "React JS",
+      icon: "/TechIcons/reactjs.png",
+    },
+    {
+      name: "Redux Toolkit",
+      icon: "/TechIcons/redux.png",
+    },
+    {
+      name: "Tailwind CSS",
+      icon: "/TechIcons/tailwind.png",
+    },
+    {
+      name: "Node JS",
+      icon: "/TechIcons/nodejs.png",
+    },
+    {
+      name: "MongoDB",
+      icon: "/TechIcons/mongodb.png",
+    },
+    {
+      name: "Three JS",
+      icon: "/TechIcons/threejs.svg",
+    },
+    {
+      name: "git",
+      icon: "/TechIcons/git.png",
+    },
+  ];

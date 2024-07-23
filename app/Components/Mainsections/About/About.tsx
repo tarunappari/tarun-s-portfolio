@@ -1,7 +1,7 @@
 "use client";
 
 import { BentoGrid, BentoGridItem } from '../../ui/BentoGrid';
-import { gridItems } from '@/app/data';
+import { gridItems } from '../../../data/index'
 import styled from 'styled-components';
 
 const About = () => {

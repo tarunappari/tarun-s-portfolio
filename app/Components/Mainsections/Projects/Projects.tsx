@@ -1,29 +1,27 @@
 // src/components/Projects.tsx
 import React from 'react';
-import { projects } from '../../../data';
+import { projects } from '../../../data/index';
 import { CardContainer, CardBody, CardItem } from '../../ui/3d-card'; // Adjust the import path as needed
 import Image from 'next/image';
 import styled from 'styled-components';
 import { motion } from "framer-motion";
-import * as THREE from 'three';
-import { Button } from "../../ui/MovingBorder";
+import { SectionWrapper } from '../../../hoc/index'
+import { slideIn , textVariant} from '../../../motion/motion'
 
 const Projects = () => {
 
 
   return (
-    <ProjectsMainContainer className="main-container">
+    <ProjectsMainContainer className="main-container" id='projects'>
       <div className='featured-container'>
-        <motion.h1
-        initial={{ opacity: 0, x: -100 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1 }}>
+        <motion.h1 variants={slideIn("left", "tween", 0.2, 1)}
+        >
            Featured <span className='span-gradient'>Works</span>
         </motion.h1>
       </div>
       <ProjectContainer className="projects-container">
         {projects.map((project) => (
-          <CardContainer key={project.id} className="card-container">
+          <CardContainer key={project.id} className="card-container" num={project.id}>
             <CardBody className="card-body">
               <CardItem className="card-item" translateZ={50}>
                 <h2>{project.title}</h2>

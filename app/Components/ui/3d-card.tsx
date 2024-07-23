@@ -10,6 +10,7 @@ import React, {
   useRef,
   useEffect,
 } from "react";
+import { slideIn , textVariant} from '../../motion/motion'
 
 const MouseEnterContext = createContext<
   [boolean, React.Dispatch<React.SetStateAction<boolean>>] | undefined
@@ -20,10 +21,12 @@ export const CardContainer = ({
   children,
   className,
   containerClassName,
+  num
 }: {
   children?: React.ReactNode;
   className?: string;
   containerClassName?: string;
+  num:number
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMouseEntered, setIsMouseEntered] = useState(false);
@@ -57,9 +60,15 @@ export const CardContainer = ({
         style={{
           perspective: "1000px",
         }}
-        initial={{ opacity: 0, y: 100 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        
+        // variants={slideIn("left", "spring", 0.5*num , 1)}
+        initial={{ opacity: 0, x: -100 }}
+        whileInView={{opacity : 1, x:0, transition: {
+          type: "spring",
+          delay: 0.5*num,
+          duration: 0.3,
+          ease: 'easeOut',
+        },}}
       >
         <div
           ref={containerRef}

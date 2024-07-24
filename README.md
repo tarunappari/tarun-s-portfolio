@@ -38,3 +38,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 18 - july
 trying to add the 3d models
+
+24 July - wish to complete it but have some more idea's to make it more attractive 

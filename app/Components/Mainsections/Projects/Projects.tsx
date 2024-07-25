@@ -1,6 +1,6 @@
 // src/components/Projects.tsx
 import React from 'react';
-import { projects } from '../../../data';
+import { projects } from '../../../../public/data';
 import { CardContainer, CardBody, CardItem } from '../../ui/3d-card'; // Adjust the import path as needed
 import Image from 'next/image';
 import styled from 'styled-components';
@@ -12,9 +12,9 @@ const Projects = () => {
 
 
   return (
-    <ProjectsMainContainer className="main-container" id='projects'>
+    <ProjectsMainContainer className="main-container" >
       <div className='featured-container'>
-        <motion.h1 variants={slideIn("left", "tween", 0.2, 1)}
+        <motion.h1 variants={textVariant(1)}
         >
            Featured <span className='span-gradient'>Works</span>
         </motion.h1>
@@ -51,9 +51,10 @@ const Projects = () => {
   );
 };
 
-export default Projects;
+export default SectionWrapper(Projects , 'projects');
 
 let ProjectsMainContainer = styled.div`
+margin-top: -6rem;
      .featured-container{
       min-width: 100%;
       text-align: center;
@@ -94,8 +95,8 @@ let ProjectContainer = styled.div`
             background: linear-gradient(
                 90deg,
                 #000002 10%,
-                #06091b 70%,
-                #000002 100%
+                #19191b 70%,
+                #000005 100%
             );
 
             background-size: 400% 400%;
@@ -138,18 +139,6 @@ let ProjectContainer = styled.div`
         font-size: 0.8rem;
       }
       }
-  }
-
-  @keyframes gradient {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
   }
 
   @media only screen and (max-width:790px){

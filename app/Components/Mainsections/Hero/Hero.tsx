@@ -12,6 +12,7 @@ import { Environment, OrbitControls } from "@react-three/drei";
 import dynamic from 'next/dynamic';
 import { fadeIn, slideIn, textVariant } from '../../../motion/motion';
 import CanvasLoader from "../../Loader";
+import { SectionWrapper } from "@/app/hoc";
 
 const TechGuy = dynamic(() => import("../../models/TechGuy"), { suspense: true });
 const Computer = dynamic(() => import("../../models/Computer"), { suspense: true });
@@ -28,6 +29,14 @@ const Hero: React.FC = () => {
         repeat: Infinity,
         repeatType: "mirror",
         duration: 15,
+      },
+    },
+    scrollButton: {
+      opacity: 0,
+      y: 10,
+      transition: {
+        duration: 2,
+        repeat: Infinity,
       },
     },
   };
@@ -75,12 +84,12 @@ const Hero: React.FC = () => {
   // }
 
   return (
-    <HeroContainer id="#home">
+    <HeroContainer>
       <div style={{ zIndex: "-1" }}>
         <BackgroundBeams />
       </div>
       <div className="hero-container">
-        <div className="hero-image-container">
+        <motion.div variants={textVariant(3)} className="hero-image-container">
           <Canvas>
             <ambientLight intensity={-1} />
             <OrbitControls enableZoom={false} />
@@ -90,31 +99,28 @@ const Hero: React.FC = () => {
             </Suspense>
             <Environment preset="studio" background={false} resolution={256} />
           </Canvas>
-        </div>
-        <motion.div
+        </motion.div>
+        <div
           className="hero-info"
-          variants={slideIn("left", "spring", 2, 2)}
         >
-          <motion.h2 variants={textVariant(2)}>TARUN APPARI</motion.h2>
-          <h1 className="h1">
-            Front-End Developer
-          </h1>
+          <motion.h2 variants={textVariant(0.5)}>TARUN APPARI</motion.h2>
+          <motion.h1 variants={textVariant(1)}>
+            <TextGenerateEffect className="h1" words="Front-End Developer" />
+          </motion.h1>
           <div className="h3-container">
-            <h3 className="h3">
+            <motion.h3 className="h3" variants={textVariant(1.5)}>
               Transforming Concepts into
-            </h3>
-            <h3 className="h3">
-              Seamless
-              &nbsp;
-              <span className="gradient-span">User Experiences</span>
-            </h3>
+            </motion.h3>
+            <motion.h3 className="h3" variants={textVariant(2)}>
+              Seamless <span className="h3 gradient-span">User Experiences</span>
+            </motion.h3>
           </div>
           <motion.div
-            variants={slideIn("up", "tween", 0.2, 1)}
-            animate="scrollButton"
+            variants={sliderVariant}
+            animate='scrollButton'
             className="scroll"
           >
-            <Image src={scroll} alt="scroll-img" className="scrollImg" />
+           <a href="#about"> <Image src={scroll} alt="scroll-img" className="scrollImg" /></a>
           </motion.div>
           {
             !loader &&
@@ -127,19 +133,17 @@ const Hero: React.FC = () => {
               Front-End React Developer
             </motion.div>
           }
-        </motion.div>
+        </div>
       </div>
     </HeroContainer>
   );
 };
 
-export default Hero;
+export default SectionWrapper(Hero, '#hero');
 
 
 let HeroContainer = styled.div`
     min-height: 100vh;
-  background-color: #10100f;
-  color: #d5d5d5;
   position: relative;
   overflow: hidden !important;
   padding-top: 2rem;
@@ -176,7 +180,7 @@ let HeroContainer = styled.div`
       .h3 {
         font-size: 1.9rem;
         font-weight: 600;
-        color: #a9a9a9;
+        color: #949494;
         display: flex;
       }
       .gradient-span {
@@ -267,6 +271,9 @@ let HeroContainer = styled.div`
     }
     .scrollImg {
       width: 1.6rem;
+    }
+    .slidingText{
+      width: 150vw;
     }
   }
   }

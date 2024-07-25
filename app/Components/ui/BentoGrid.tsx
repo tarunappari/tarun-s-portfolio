@@ -1,5 +1,5 @@
 "use client";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { IoCopyOutline } from "react-icons/io5";
 
 // Also install this npm i --save-dev @types/react-lottie
@@ -17,6 +17,7 @@ import { Environment, OrbitControls } from "@react-three/drei";
 import PcWorkStation from '../models/PcWorkStation';
 import Butterfly from '../models/Butterfly'
 import MailRocket from '../../../public/data/mail-rocket.json'
+import confetti from '../../../public/data/confetti.json'
 
 
 export const BentoGrid = ({
@@ -59,7 +60,7 @@ export const BentoGridItem = ({
     titleClassName?: string;
     spareImg?: string;
 }) => {
-    const leftLists = ["ReactJS", "ReactJS", "JavaScript"];
+    const leftLists = ["Nodejs", "ReactJs", "JavaScript"];
     const rightLists = ["NextJS", "Express", "TypeScript"];
 
     const [copied, setCopied] = useState(false);
@@ -69,6 +70,15 @@ export const BentoGridItem = ({
         autoplay: true,
         animationData: animationData,
     };
+
+    const defaultOptions = {
+        loop: copied,
+        autoplay: copied,
+        animationData: confetti,
+        rendererSettings: {
+          preserveAspectRatio: "xMidYMid slice",
+        },
+      };
 
     const mailRocket = {
         loop: true,
@@ -81,22 +91,29 @@ export const BentoGridItem = ({
         navigator.clipboard.writeText(text);
         setCopied(true);
     };
+
+    useEffect(()=>{
+
+        const timeoutId: number = window.setTimeout(() => {
+            if(copied){
+                setCopied(false)
+            }
+          }, 8000);
+
+          return () => clearTimeout(timeoutId);
+    },[copied])
+
     return (
         <div
             className={cn(
                 // remove p-4 rounded-3xl dark:bg-black dark:border-white/[0.2] bg-white  border border-transparent, add border border-white/[0.1] overflow-hidden relative
-                "row-span-1 relative overflow-hidden rounded-3xl border border-white/[0.1] group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none justify-between flex flex-col space-y-4",
+                ` row-span-1 relative overflow-hidden rounded-3xl border border-white/[0.1] group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none justify-between flex flex-col space-y-4`,
                 className
             )}
             style={{
-                //   add these two
-                //   you can generate the color from here https://cssgradient.io/
-                // background: "rgb(6, 7, 14)",
-                // backgroundColor:
-                //     "linear-gradient(117deg, rgba(0,0,0,1) 1%, rgba(12,44,163,1) 74%)",
-                background: "rgb(16,16,15)",
+                background: "rgb(6, 6, 14)",
                 backgroundColor:
-                    "linear-gradient(117deg, rgba(16,16,15,1) 0%, rgba(1,4,15,1) 74%)",
+                    "linear-gradient(117deg, #030311 0%, rgba(1,4,15,1) 74%)",
             }}
         >
             {/* add img divs */}
@@ -137,14 +154,14 @@ export const BentoGridItem = ({
                 >
                     {/* change the order of the title and des, font-extralight, remove text-xs text-neutral-600 dark:text-neutral-300 , change the text-color */}
                     <div
-                        className="font-sans font-extralight md:max-w-32 md:text-xs lg:text-base text-sm text-[#C1C2D3] z-10"
+                        className="font-sans font-extralight md:max-w-32 md:text-xs lg:text-base text-sm text-[#6d6d6d] z-10"
                         style={{ fontWeight: '600' }}>
                         {description}
                     </div>
                     {/* add text-3xl max-w-96 , remove text-neutral-600 dark:text-neutral-300*/}
                     {/* remove mb-2 mt-2 */}
                     <div
-                        className={`${id === 6 && 'email-title'}font-sans text-[#d5d5d5] text-lg lg:text-3xl max-w-96 font-bold z-10`}
+                        className={`${id === 6 && 'email-title'}font-sans text-[#b1b1b1] text-lg lg:text-3xl max-w-96 font-bold z-10`}
                     >
                         {title}
                     </div>
@@ -160,6 +177,7 @@ export const BentoGridItem = ({
                                     }`}
                             >
                                 {/* <img src="/confetti.gif" alt="confetti" /> */}
+                                <Lottie options={defaultOptions} height={200} width={400} />
                             </div>
 
                             <MagicButton

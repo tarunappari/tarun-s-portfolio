@@ -4,6 +4,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import { TextRevealCard, TextRevealCardTitle, TextRevealCardDescription } from '../../ui/TextRevealCard';
+import { SectionWrapper } from '@/app/hoc';
 
 const Experience = () => {
 
@@ -34,10 +35,11 @@ const Experience = () => {
     )
 }
 
-export default Experience;
+export default SectionWrapper(Experience , '');
 
 let ExperienceContainer = styled.div`
     min-height: 100vh;
+    margin-top: 2rem;
     .exp-title{
         padding: 0.5rem;
         text-align: center;

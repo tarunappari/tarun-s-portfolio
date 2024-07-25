@@ -1,7 +1,5 @@
 import { motion, Variants } from "framer-motion";
 import { FC } from "react";
-
-import { styles } from "../styles/styles";
 import { staggerContainer } from "../motion/motion";
 
 interface StarWrapperProps {
@@ -16,11 +14,11 @@ const StarWrapper = (Component: FC, idName: string): FC<StarWrapperProps> =>
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.25 }}
-        className={`${styles.padding} max-w-7xl mx-auto relative z-0`}
+        style={{padding:'0',margin:'0'}}
       >
-        <span className="hash-span" id={idName}>
+        <i style={{padding:'0',margin:'0'}} className="hash-span" id={idName}>
           &nbsp;
-        </span>
+        </i>
 
         <Component />
       </motion.section>

@@ -1,23 +1,21 @@
-// src/components/Projects.tsx
-import React from 'react';
+"use client";
+
+import React, { memo } from 'react';
 import { projects } from '../../../../public/data';
 import { CardContainer, CardBody, CardItem } from '../../ui/3d-card'; // Adjust the import path as needed
 import Image from 'next/image';
 import styled from 'styled-components';
-import { motion } from "framer-motion";
-import { SectionWrapper } from '../../../hoc/index'
-import { slideIn , textVariant} from '../../../motion/motion'
+import { motion } from 'framer-motion';
+import { SectionWrapper } from '../../../hoc/index';
+import { slideIn, textVariant } from '../../../motion/motion';
 
-const Projects = () => {
-
-
+const Projects: React.FC = () => {
   return (
-    <ProjectsMainContainer className="main-container" >
+    <ProjectsMainContainer className="main-container">
       <div className='featured-container'>
-        <motion.h1 variants={textVariant(1)}
-        >
+        <h1>
            Featured <span className='span-gradient'>Works</span>
-        </motion.h1>
+        </h1>
       </div>
       <ProjectContainer className="projects-container">
         {projects.map((project) => (
@@ -27,19 +25,35 @@ const Projects = () => {
                 <h2>{project.title}</h2>
                 <p>{project.des}</p>
               </CardItem>
-              <CardItem className="card-item" translateZ={70}>
-                <Image src={project.img} className='project-img' alt={project.title} width={450} height={450} />
+              <CardItem className="card-item" translateZ={90}>
+                <Image 
+                  src={project.img} 
+                  className='project-img' 
+                  alt={project.title} 
+                  width={450} 
+                  height={450} 
+                  priority // Load image eagerly
+                />
               </CardItem>
               <CardItem className="card-item icons-btn-div" translateZ={40}>
                 <div className="icon-list">
                   {project.iconLists.map((icon, index) => (
-                    <Image key={index} src={icon} alt={`icon-${index}`} width={20} height={20} />
+                    <Image 
+                      key={index} 
+                      src={icon} 
+                      alt={`icon-${index}`} 
+                      width={20} 
+                      height={20} 
+                      priority // Load icon images eagerly
+                    />
                   ))}
                 </div>
                 <div className="live-button">
                   <button className="px-7 py-1.5 rounded-full relative bg-slate-700 text-white text-sm hover:shadow-2xl hover:shadow-white/[0.1] transition duration-200 border border-slate-600">
-                    <div className="absolute inset-x-0 h-px w-1/2 mx-auto -top-px shadow-2xl  bg-gradient-to-r from-transparent via-teal-500 to-transparent" />
-                    <span className="relative z-20"><a href={project.link} className='btn' target="_blank" rel="noopener noreferrer">Live Site</a></span>
+                    <div className="absolute inset-x-0 h-px w-1/2 mx-auto -top-px shadow-2xl bg-gradient-to-r from-transparent via-teal-500 to-transparent" />
+                    <span className="relative z-20">
+                      <a href={project.link} className='btn' target="_blank" rel="noopener noreferrer">Live Site</a>
+                    </span>
                   </button>
                 </div>
               </CardItem>
@@ -51,15 +65,15 @@ const Projects = () => {
   );
 };
 
-export default SectionWrapper(Projects , 'projects');
+export default SectionWrapper(memo(Projects), '');
+
 
 let ProjectsMainContainer = styled.div`
-margin-top: -6rem;
+      margin-top: -2rem;
      .featured-container{
       min-width: 100%;
       text-align: center;
       margin-top: 5rem;
-      margin-bottom: -2rem;
       h1{
         font-size: 3rem;
         font-weight: 800;
@@ -91,7 +105,7 @@ let ProjectContainer = styled.div`
       border: 0.05rem solid grey;
       border-radius: 1rem;
       box-shadow: 2px 2px 5px #3d3d3d;
-      padding: 1rem;
+      padding: 0.6rem;
             background: linear-gradient(
                 90deg,
                 #000002 10%,
@@ -148,7 +162,8 @@ let ProjectContainer = styled.div`
 
   @media only screen and (max-width:490px){
     .card-container{
-      margin: 0 1rem;
+      margin-left: 1.5rem;
+      margin-right: 1.5rem;
     }
   }
 

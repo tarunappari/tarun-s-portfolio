@@ -1,7 +1,6 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import React, {
   createContext,
@@ -10,12 +9,11 @@ import React, {
   useRef,
   useEffect,
 } from "react";
-import { slideIn , textVariant} from '../../motion/motion'
+import { slideIn, textVariant } from '../../motion/motion';
 
 const MouseEnterContext = createContext<
   [boolean, React.Dispatch<React.SetStateAction<boolean>>] | undefined
 >(undefined);
-
 
 export const CardContainer = ({
   children,
@@ -26,7 +24,7 @@ export const CardContainer = ({
   children?: React.ReactNode;
   className?: string;
   containerClassName?: string;
-  num:number
+  num: number;
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMouseEntered, setIsMouseEntered] = useState(false);
@@ -40,48 +38,28 @@ export const CardContainer = ({
     containerRef.current.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
   };
 
-  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
-    setIsMouseEntered(true);
-    if (!containerRef.current) return;
+  const handleMouseEnter = () => setIsMouseEntered(true);
+
+  const handleMouseLeave = () => {
+    setIsMouseEntered(false);
+    if (containerRef.current) {
+      containerRef.current.style.transform = `rotateY(0deg) rotateX(0deg)`;
+    }
   };
 
-  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!containerRef.current) return;
-    setIsMouseEntered(false);
-    containerRef.current.style.transform = `rotateY(0deg) rotateX(0deg)`;
-  };
   return (
     <MouseEnterContext.Provider value={[isMouseEntered, setIsMouseEntered]}>
       <motion.div
-        className={cn(
-          "py-20 flex items-center justify-center",
-          containerClassName
-        )}
-        style={{
-          perspective: "1000px",
-        }}
-        
-        // variants={slideIn("left", "spring", 0.5*num , 1)}
-        initial={{ opacity: 0, x: -100 }}
-        whileInView={{opacity : 1, x:0, transition: {
-          type: "spring",
-          delay: 0.5*num,
-          duration: 0.3,
-          ease: 'easeOut',
-        },}}
+        className={cn("py-8 flex items-center justify-center", containerClassName)}
+        style={{ perspective: "1000px" }}
       >
         <div
           ref={containerRef}
           onMouseEnter={handleMouseEnter}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
-          className={cn(
-            "flex items-center justify-center relative transition-all duration-200 ease-linear",
-            className
-          )}
-          style={{
-            transformStyle: "preserve-3d",
-          }}
+          className={cn("flex items-center justify-center relative transition-all duration-200 ease-linear", className)}
+          style={{ transformStyle: "preserve-3d" }}
         >
           {children}
         </div>
@@ -96,18 +74,13 @@ export const CardBody = ({
 }: {
   children: React.ReactNode;
   className?: string;
-}) => {
-  return (
-    <div
-      className={cn(
-        "h-96 w-96 [transform-style:preserve-3d]  [&>*]:[transform-style:preserve-3d]",
-        className
-      )}
-    >
-      {children}
-    </div>
-  );
-};
+}) => (
+  <div
+    className={cn("h-96 w-96 [transform-style:preserve-3d] [&>*]:[transform-style:preserve-3d]", className)}
+  >
+    {children}
+  </div>
+);
 
 export const CardItem = ({
   as: Tag = "div",
@@ -140,11 +113,10 @@ export const CardItem = ({
   }, [isMouseEntered]);
 
   const handleAnimations = () => {
-    if (!ref.current) return;
-    if (isMouseEntered) {
-      ref.current.style.transform = `translateX(${translateX}px) translateY(${translateY}px) translateZ(${translateZ}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
-    } else {
-      ref.current.style.transform = `translateX(0px) translateY(0px) translateZ(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg)`;
+    if (ref.current) {
+      ref.current.style.transform = isMouseEntered
+        ? `translateX(${translateX}px) translateY(${translateY}px) translateZ(${translateZ}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`
+        : `translateX(0px) translateY(0px) translateZ(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg)`;
     }
   };
 

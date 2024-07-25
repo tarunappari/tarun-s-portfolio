@@ -1,15 +1,28 @@
 "use client"
 
-import { Navbar } from "./Components/Mainsections/Navbar/Navbar";
-import About from "./Components/Mainsections/About/About";
-import Hero from "./Components/Mainsections/Hero/Hero";
+import dynamic from 'next/dynamic';
+import { useEffect } from 'react';
+import { GlobalStyles } from './GlobalStyles';
 import { navItems } from "../public/data";
-import Projects from "./Components/Mainsections/Projects/Projects";
-import { GlobalStyles } from './GlobalStyles'
-import Experience from "./Components/Mainsections/Experience/Experience";
-import Contact from "./Components/Mainsections/Contact/Contact";
+
+// Lazy load components
+const Navbar = dynamic(() => import("./Components/Mainsections/Navbar/Navbar").then(mod => ({ default: mod.Navbar })), { ssr: false });
+const About = dynamic(() => import("./Components/Mainsections/About/About"), { ssr: false });
+const Hero = dynamic(() => import("./Components/Mainsections/Hero/Hero"), { ssr: false });
+const Projects = dynamic(() => import("./Components/Mainsections/Projects/Projects"), { ssr: false });
+const Experience = dynamic(() => import("./Components/Mainsections/Experience/Experience"), { ssr: false });
+const Contact = dynamic(() => import("./Components/Mainsections/Contact/Contact"), { ssr: false });
 
 export default function Home() {
+  useEffect(() => {
+    // Prefetching components for better performance
+    import("./Components/Mainsections/Navbar/Navbar");
+    import("./Components/Mainsections/About/About");
+    import("./Components/Mainsections/Hero/Hero");
+    import("./Components/Mainsections/Projects/Projects");
+    import("./Components/Mainsections/Experience/Experience");
+    import("./Components/Mainsections/Contact/Contact");
+  }, []);
 
   return (
     <main>

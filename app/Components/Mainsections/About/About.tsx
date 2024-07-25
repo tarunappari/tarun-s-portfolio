@@ -1,13 +1,14 @@
 "use client";
+import React, { memo } from "react";
 import { BentoGrid, BentoGridItem } from '../../ui/BentoGrid';
 import styled from 'styled-components';
 
 const About = () => {
-
-  const gridItems = [
+  
+  const gridItems = React.useMemo(() => [
     {
       id: 1,
-      title: "I prioritize client collaboration, fostering open communication ",
+      title: "I prioritize client collaboration, fostering open communication",
       description: "",
       className: "lg:col-span-3 md:col-span-6 md:row-span-4 lg:min-h-[60vh]",
       imgClassName: "w-full h-full",
@@ -45,7 +46,6 @@ const About = () => {
       img: "/grid.svg",
       spareImg: "/b4.svg",
     },
-  
     {
       id: 5,
       title: "Currently Lost In The World Of MERN",
@@ -66,34 +66,34 @@ const About = () => {
       img: "",
       spareImg: "",
     },
-  ];
-
+  ], []);
 
   return (
     <AboutContainer id='about' className='about-container'>
-        <BentoGrid className='bento-grid'>
-          {
-            gridItems.map((item)=>(
-              <BentoGridItem 
-                  id={item.id}
-                  key={item.id}
-                  title={item.title}
-                  description={item.description}
-                  className={item.className}
-                  img={item.img}
-                  imgClassName={item.imgClassName}
-                  titleClassName={item.titleClassName}
-                  spareImg={item.spareImg}
-              />
-            ))
-          }
-        </BentoGrid>
+      <BentoGrid className='bento-grid'>
+        {gridItems.map((item) => (
+          <BentoGridItem 
+            id={item.id}
+            key={item.id}
+            title={item.title}
+            description={item.description}
+            className={item.className}
+            img={item.img}
+            imgClassName={item.imgClassName}
+            titleClassName={item.titleClassName}
+            spareImg={item.spareImg}
+          />
+        ))}
+      </BentoGrid>
     </AboutContainer>
-  )
-}
+  );
+};
+
+// Memoizing BentoGridItem if it is a functional component
+const MemoizedBentoGridItem = memo(BentoGridItem);
 
 export default About;
 
-let AboutContainer = styled.section`
- padding: 1rem;
-`
+const AboutContainer = styled.section`
+  padding: 1rem;
+`;

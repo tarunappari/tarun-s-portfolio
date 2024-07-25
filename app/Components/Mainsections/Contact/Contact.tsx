@@ -1,10 +1,14 @@
 import React from 'react'
 import styled from 'styled-components';
+import { BackgroundBeams } from '../../ui/BackgroundBeams';
 
 const Contact = () => {
   return (
     <ContactContainer>
-        <h1>contact</h1>
+      <div style={{ zIndex: "-1" }}>
+        <BackgroundBeams />
+      </div>
+      <h1>contact</h1>
     </ContactContainer>
   )
 }

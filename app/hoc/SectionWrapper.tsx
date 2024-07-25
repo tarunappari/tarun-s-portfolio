@@ -6,23 +6,25 @@ interface StarWrapperProps {
   idName: string;
 }
 
-const StarWrapper = (Component: FC, idName: string): FC<StarWrapperProps> =>
-  function HOC() {
+// Generic type for the component
+function withStarWrapper<T>(Component: FC<T>, idName: string): FC<T & StarWrapperProps> {
+  return function StarWrappedComponent(props: T & StarWrapperProps) {
     return (
       <motion.section
-        variants={staggerContainer(0.1, 0.1) as Variants} // Adjust the staggerChildren and delayChildren as needed
+        variants={staggerContainer(0.1, 0.1) as Variants}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.25 }}
-        style={{padding:'0',margin:'0'}}
+        className="section-wrapper"
       >
-        <i style={{padding:'0',margin:'0'}} className="hash-span" id={idName}>
+        <i className="hash-span" id={idName}>
           &nbsp;
         </i>
 
-        <Component />
+        <Component {...props} />
       </motion.section>
     );
   };
+}
 
-export default StarWrapper;
+export default withStarWrapper;

@@ -138,7 +138,7 @@ export default Hero;
 
 let HeroContainer = styled.div`
     min-height: 100vh;
-  background-color: #000000;
+  background-color: #10100f;
   color: #d5d5d5;
   position: relative;
   overflow: hidden !important;

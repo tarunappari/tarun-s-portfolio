@@ -1,6 +1,6 @@
 // src/components/Projects.tsx
 import React from 'react';
-import { projects } from '../../../data/index';
+import { projects } from '../../../data';
 import { CardContainer, CardBody, CardItem } from '../../ui/3d-card'; // Adjust the import path as needed
 import Image from 'next/image';
 import styled from 'styled-components';

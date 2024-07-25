@@ -10,14 +10,13 @@ import { cn } from "@/lib/utils";
 
 import { BackgroundGradientAnimation } from "./GradientBg";
 import GridGlobe from "./GridGlobe";
-import animationData from "../../data/compurt-mail.json";
+import animationData from "../../../public/data/mail.json";
 import MagicButton from "./MagicButton";
 import { Canvas } from '@react-three/fiber';
 import { Environment, OrbitControls } from "@react-three/drei";
 import PcWorkStation from '../models/PcWorkStation';
 import Butterfly from '../models/Butterfly'
-import ComputerMail from '../../data/compurt-mail.json'
-import MailRocket from '../../data/mail-rocket.json'
+import MailRocket from '../../../public/data/mail-rocket.json'
 
 
 export const BentoGrid = ({
@@ -65,19 +64,10 @@ export const BentoGridItem = ({
 
     const [copied, setCopied] = useState(false);
 
-    const defaultOptions = {
-        loop: copied,
-        autoplay: copied,
-        animationData: animationData,
-        rendererSettings: {
-            preserveAspectRatio: "xMidYMid slice",
-        },
-    };
-
     const mailAnimation = {
         loop: true,
         autoplay: true,
-        animationData: ComputerMail,
+        animationData: animationData,
     };
 
     const mailRocket = {
@@ -170,7 +160,6 @@ export const BentoGridItem = ({
                                     }`}
                             >
                                 {/* <img src="/confetti.gif" alt="confetti" /> */}
-                                <Lottie options={defaultOptions} height={200} width={400} />
                             </div>
 
                             <MagicButton

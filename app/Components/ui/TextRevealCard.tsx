@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState, memo } from "react";
 import { motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 import { cn } from "@/lib/utils";
-import expAnime from '../../data/experience.json'
+import experience from '../../../public/data/experience.json'
 import Lottie from 'react-lottie';
 
 export const TextRevealCard = ({
@@ -83,7 +83,7 @@ export const TextRevealCard = ({
   const expAnimations = {
     loop: true,
     autoplay: true,
-    animationData: expAnime,
+    animationData: experience,
   };
 
 

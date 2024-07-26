@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense, useEffect, useState, useCallback } from "react";
+import React, { Suspense, useEffect, useState, useCallback,memo  } from "react";
 import styled from "styled-components";
 import scroll from "../../../../public/scroll.png";
 import Image from "next/image";
@@ -122,7 +122,7 @@ const Hero: React.FC = () => {
   );
 };
 
-export default SectionWrapper(Hero, '#hero');
+export default SectionWrapper(memo (Hero), '#hero');
 
 
 let HeroContainer = styled.div`

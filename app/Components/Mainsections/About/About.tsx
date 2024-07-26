@@ -2,6 +2,7 @@
 import React, { memo } from "react";
 import { BentoGrid, BentoGridItem } from '../../ui/BentoGrid';
 import styled from 'styled-components';
+import { SectionWrapper } from "@/app/hoc";
 
 const About = () => {
   
@@ -92,7 +93,7 @@ const About = () => {
 // Memoizing BentoGridItem if it is a functional component
 const MemoizedBentoGridItem = memo(BentoGridItem);
 
-export default About;
+export default SectionWrapper(memo(About),'');
 
 const AboutContainer = styled.section`
   padding: 1rem;

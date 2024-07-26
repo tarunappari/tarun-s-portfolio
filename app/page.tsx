@@ -12,6 +12,7 @@ const Hero = dynamic(() => import("./Components/Mainsections/Hero/Hero"), { ssr:
 const Projects = dynamic(() => import("./Components/Mainsections/Projects/Projects"), { ssr: false });
 const Experience = dynamic(() => import("./Components/Mainsections/Experience/Experience"), { ssr: false });
 const Contact = dynamic(() => import("./Components/Mainsections/Contact/Contact"), { ssr: false });
+const Tech = dynamic(() => import("./Components/Mainsections/Tech/Tech"), { ssr: false });
 
 export default function Home() {
   useEffect(() => {
@@ -22,6 +23,7 @@ export default function Home() {
     import("./Components/Mainsections/Projects/Projects");
     import("./Components/Mainsections/Experience/Experience");
     import("./Components/Mainsections/Contact/Contact");
+    import("./Components/Mainsections/Tech/Tech");
   }, []);
 
   return (
@@ -30,9 +32,10 @@ export default function Home() {
       <Navbar navItems={navItems} className="nav" />
       <div>
         <Hero idName="#hero" />
-        <About />
+        <About idName="#about" />
         <Experience idName="" />
         <Projects idName="#projects" />
+        <Tech idName='#tech' />
         <Contact />
       </div>
     </main>

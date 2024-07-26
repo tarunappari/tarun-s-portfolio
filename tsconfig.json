@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/Components/models/TechGuy.jsx", "app/motion/motion.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/Components/models/TechGuy.jsx", "app/motion/motion.ts", "app/Components/ui/BallCanvas.tsx"],
   "exclude": ["node_modules"]
 }

@@ -16,6 +16,7 @@ const Contact = () => {
 export default Contact;
 
 let ContactContainer = styled.div`
+    position: relative;
     min-height: 100vh;
     border: 1px solid red;
     h1{

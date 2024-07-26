@@ -185,7 +185,7 @@ html{
 
 /* canvas- styles */
 .canvas-loader {
-  font-size: 10px;
+  font-size: 10rem;
   width: 1em;
   height: 1em;
   border-radius: 50%;

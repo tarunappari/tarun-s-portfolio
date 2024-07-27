@@ -15,7 +15,6 @@ import { SectionWrapper } from "@/app/hoc";
 // Dynamic imports without Canvas
 const TechGuy = dynamic(() => import("../../models/TechGuy"), { suspense: true });
 const Computer = dynamic(() => import("../../models/Computer"), { suspense: true });
-const Tarun = dynamic(() => import("../../models/Tarun"), { suspense: true });
 
 const Hero: React.FC = () => {
   const sliderVariant: Variants = {
@@ -81,9 +80,8 @@ const Hero: React.FC = () => {
             <ambientLight intensity={0.5} />
             <pointLight position={[10, 10, 10]} intensity={1} />
             <OrbitControls enableZoom={false} />
-            <Suspense fallback={null}>
-                <Tarun />
-              {/* <TechGuy
+            <Suspense fallback={<CanvasLoader />}>
+              <TechGuy
                 position={TechguyPosition}
                 scale={[TechguyScale, TechguyScale, TechguyScale]}
               />
@@ -92,7 +90,7 @@ const Hero: React.FC = () => {
               <Computer
                 position={computerPosition}
                 scale={[computerScale, computerScale, computerScale]}
-              /> */}
+              />
             </Suspense>
             <Environment preset="studio" background={false} resolution={256} />
           </Canvas>

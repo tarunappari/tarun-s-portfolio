@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { memo } from 'react'
 import styled from 'styled-components';
 import { BackgroundBeams } from '../../ui/BackgroundBeams';
+import { SectionWrapper } from '@/app/hoc';
 
-const Contact = () => {
+const Contact : React.FC = () => {
   return (
     <ContactContainer>
       <div style={{ zIndex: "-1" }}>
@@ -13,7 +14,7 @@ const Contact = () => {
   )
 }
 
-export default Contact;
+export default SectionWrapper(memo(Contact),'');
 
 let ContactContainer = styled.div`
     position: relative;

@@ -14,7 +14,7 @@ const Projects: React.FC = () => {
     <ProjectsMainContainer className="main-container">
       <div className='featured-container'>
         <h1>
-           Featured <span className='span-gradient'>Works</span>
+          Featured <span className='span-gradient'>Works</span>
         </h1>
       </div>
       <ProjectContainer className="projects-container">
@@ -26,36 +26,39 @@ const Projects: React.FC = () => {
                 <p>{project.des}</p>
               </CardItem>
               <CardItem className="card-item" translateZ={90}>
-                <Image 
-                  src={project.img} 
-                  className='project-img' 
-                  alt={project.title} 
-                  width={450} 
-                  height={450} 
+                <Image
+                  src={project.img}
+                  className='project-img'
+                  alt={project.title}
+                  width={450}
+                  height={450}
                   priority // Load image eagerly
                 />
               </CardItem>
               <CardItem className="card-item icons-btn-div" translateZ={40}>
                 <div className="icon-list">
                   {project.iconLists.map((icon, index) => (
-                    <Image 
-                      key={index} 
-                      src={icon} 
-                      alt={`icon-${index}`} 
-                      width={20} 
-                      height={20} 
+                    <Image
+                      key={index}
+                      src={icon}
+                      alt={`icon-${index}`}
+                      width={20}
+                      height={20}
                       priority // Load icon images eagerly
                     />
                   ))}
                 </div>
-                <div className="live-button">
-                  <button className="px-7 py-1.5 rounded-full relative bg-slate-700 text-white text-sm hover:shadow-2xl hover:shadow-white/[0.1] transition duration-200 border border-slate-600">
-                    <div className="absolute inset-x-0 h-px w-1/2 mx-auto -top-px shadow-2xl bg-gradient-to-r from-transparent via-teal-500 to-transparent" />
-                    <span className="relative z-20">
-                      <a href={project.link} className='btn' target="_blank" rel="noopener noreferrer">Live Site</a>
-                    </span>
-                  </button>
-                </div>
+                <a href={project.link} className='btn' target="_blank" rel="noopener noreferrer">
+                  <div className="live-button">
+                    <button className="px-7 py-1.5 rounded-full relative bg-slate-700 text-white text-sm hover:shadow-2xl hover:shadow-white/[0.1] transition duration-200 border border-slate-600">
+                      <div className="absolute inset-x-0 h-px w-1/2 mx-auto -top-px shadow-2xl bg-gradient-to-r from-transparent via-teal-500 to-transparent" />
+                      <span className="relative z-20">
+                        Live Site
+                      </span>
+                    </button>
+                  </div>
+                </a>
+
               </CardItem>
             </CardBody>
           </CardContainer>

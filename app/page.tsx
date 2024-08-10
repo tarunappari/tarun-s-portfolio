@@ -35,7 +35,6 @@ export default function Home() {
         <About idName="#about" />
         <Experience idName="" />
         <Projects idName="#projects" />
-        <Tech idName='#tech' />
         <Contact idName='#contact' />
       </div>
     </main>
